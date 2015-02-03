@@ -21,6 +21,20 @@ describe('Test Commands >', function () {
         done();
     });
 
+    it('Null/Missing Test', function (done) {
+        var testLine = null;
+        var result = markup.markupCommand(testLine, null);
+        expect(result).to.equal(null);
+        done();
+    });
+
+    it('Unmatched Test', function (done) {
+        var testLine = "Z";
+        var result = markup.markupCommand(testLine, null);
+        expect(result).to.equal(null);
+        done();
+    });
+
     it('BREAK Test', function (done) {
         var testLine = 'B';
         var result = markup.markupCommand(testLine, null);
