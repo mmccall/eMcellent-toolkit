@@ -1,5 +1,6 @@
 # eMcellent-toolkit
 
+[![Build Status](https://travis-ci.org/mmccall/eMcellent-toolkit.svg?branch=master)](https://travis-ci.org/mmccall/eMcellent-toolkit)
 
 A most excellent toolkit for use with eMcellent-parse M/MUMPS parsing library; eMcellent-toolkit takes JSON representations of M/MUMPS code and performs manipulation and/or markup of the data.
 
