@@ -5,6 +5,22 @@ var markup = require('../../lib/markup.js');
 
 describe('Test Commands >', function () {
 
+    it('Trim Spacing Test', function (done) {
+        var testLine = ' B ';
+        var result = markup.markupCommand(testLine, null);
+        expect(result).to.exist;
+        expect(result.cmdName).to.equal('BREAK');
+        done();
+    });
+
+    it('Case Conversion Test', function (done) {
+        var testLine = 'b';
+        var result = markup.markupCommand(testLine, null);
+        expect(result).to.exist;
+        expect(result.cmdName).to.equal('BREAK');
+        done();
+    });
+
     it('BREAK Test', function (done) {
         var testLine = 'B';
         var result = markup.markupCommand(testLine, null);
