@@ -9,7 +9,7 @@ describe('Test Commands >', function () {
         var testLine = ' B ';
         var result = markup.markupCommand(testLine, null);
         expect(result).to.exist;
-        expect(result.cmdName).to.equal('BREAK');
+        expect(result.routineName).to.equal('BREAK');
         done();
     });
 
@@ -17,7 +17,7 @@ describe('Test Commands >', function () {
         var testLine = 'b';
         var result = markup.markupCommand(testLine, null);
         expect(result).to.exist;
-        expect(result.cmdName).to.equal('BREAK');
+        expect(result.routineName).to.equal('BREAK');
         done();
     });
 
@@ -25,7 +25,7 @@ describe('Test Commands >', function () {
         var testLine = 'B';
         var result = markup.markupCommand(testLine, null);
         expect(result).to.exist;
-        expect(result.cmdName).to.equal('BREAK');
+        expect(result.routineName).to.equal('BREAK');
         done();
     });
 
@@ -33,7 +33,7 @@ describe('Test Commands >', function () {
         var testLine = 'C';
         var result = markup.markupCommand(testLine, null);
         expect(result).to.exist;
-        expect(result.cmdName).to.equal('CLOSE');
+        expect(result.routineName).to.equal('CLOSE');
         done();
     });
 
@@ -41,7 +41,7 @@ describe('Test Commands >', function () {
         var testLine = 'D';
         var result = markup.markupCommand(testLine, null);
         expect(result).to.exist;
-        expect(result.cmdName).to.equal('DO');
+        expect(result.routineName).to.equal('DO');
         done();
     });
 
@@ -49,7 +49,7 @@ describe('Test Commands >', function () {
         var testLine = 'E';
         var result = markup.markupCommand(testLine, null);
         expect(result).to.exist;
-        expect(result.cmdName).to.equal('ELSE');
+        expect(result.routineName).to.equal('ELSE');
         done();
     });
 
@@ -57,7 +57,7 @@ describe('Test Commands >', function () {
         var testLine = 'F';
         var result = markup.markupCommand(testLine, null);
         expect(result).to.exist;
-        expect(result.cmdName).to.equal('FOR');
+        expect(result.routineName).to.equal('FOR');
         done();
     });
 
@@ -65,7 +65,7 @@ describe('Test Commands >', function () {
         var testLine = 'G';
         var result = markup.markupCommand(testLine, null);
         expect(result).to.exist;
-        expect(result.cmdName).to.equal('GOTO');
+        expect(result.routineName).to.equal('GOTO');
         done();
     });
 
@@ -73,7 +73,7 @@ describe('Test Commands >', function () {
         var testLine = 'H';
         var result = markup.markupCommand(testLine, null);
         expect(result).to.exist;
-        expect(result.cmdName).to.equal('HALT');
+        expect(result.routineName).to.equal('HALT');
         done();
     });
 
@@ -81,7 +81,7 @@ describe('Test Commands >', function () {
         var testLine = 'H';
         var result = markup.markupCommand(testLine, 3000);
         expect(result).to.exist;
-        expect(result.cmdName).to.equal('HANG');
+        expect(result.routineName).to.equal('HANG');
         done();
     });
 
@@ -89,7 +89,7 @@ describe('Test Commands >', function () {
         var testLine = 'I';
         var result = markup.markupCommand(testLine, null);
         expect(result).to.exist;
-        expect(result.cmdName).to.equal('IF');
+        expect(result.routineName).to.equal('IF');
         done();
     });
 
@@ -97,7 +97,7 @@ describe('Test Commands >', function () {
         var testLine = 'J';
         var result = markup.markupCommand(testLine, null);
         expect(result).to.exist;
-        expect(result.cmdName).to.equal('JOB');
+        expect(result.routineName).to.equal('JOB');
         done();
     });
 
@@ -105,7 +105,7 @@ describe('Test Commands >', function () {
         var testLine = 'K';
         var result = markup.markupCommand(testLine, null);
         expect(result).to.exist;
-        expect(result.cmdName).to.equal('KILL');
+        expect(result.routineName).to.equal('KILL');
         done();
     });
 
@@ -113,7 +113,7 @@ describe('Test Commands >', function () {
         var testLine = 'L';
         var result = markup.markupCommand(testLine, null);
         expect(result).to.exist;
-        expect(result.cmdName).to.equal('LOCK');
+        expect(result.routineName).to.equal('LOCK');
         done();
     });
 
@@ -121,7 +121,7 @@ describe('Test Commands >', function () {
         var testLine = 'M';
         var result = markup.markupCommand(testLine, null);
         expect(result).to.exist;
-        expect(result.cmdName).to.equal('MERGE');
+        expect(result.routineName).to.equal('MERGE');
         done();
     });
 
@@ -129,7 +129,7 @@ describe('Test Commands >', function () {
         var testLine = 'N';
         var result = markup.markupCommand(testLine, null);
         expect(result).to.exist;
-        expect(result.cmdName).to.equal('NEW');
+        expect(result.routineName).to.equal('NEW');
         done();
     });
 
@@ -137,7 +137,7 @@ describe('Test Commands >', function () {
         var testLine = 'O';
         var result = markup.markupCommand(testLine, null);
         expect(result).to.exist;
-        expect(result.cmdName).to.equal('OPEN');
+        expect(result.routineName).to.equal('OPEN');
         done();
     });
 
@@ -145,7 +145,7 @@ describe('Test Commands >', function () {
         var testLine = 'Q';
         var result = markup.markupCommand(testLine, null);
         expect(result).to.exist;
-        expect(result.cmdName).to.equal('QUIT');
+        expect(result.routineName).to.equal('QUIT');
         done();
     });
 
@@ -153,7 +153,7 @@ describe('Test Commands >', function () {
         var testLine = 'R';
         var result = markup.markupCommand(testLine, null);
         expect(result).to.exist;
-        expect(result.cmdName).to.equal('READ');
+        expect(result.routineName).to.equal('READ');
         done();
     });
 
@@ -161,7 +161,7 @@ describe('Test Commands >', function () {
         var testLine = 'S';
         var result = markup.markupCommand(testLine, null);
         expect(result).to.exist;
-        expect(result.cmdName).to.equal('SET');
+        expect(result.routineName).to.equal('SET');
         done();
     });
 
@@ -169,7 +169,7 @@ describe('Test Commands >', function () {
         var testLine = 'TC';
         var result = markup.markupCommand(testLine, null);
         expect(result).to.exist;
-        expect(result.cmdName).to.equal('TCOMMIT');
+        expect(result.routineName).to.equal('TCOMMIT');
         done();
     });
 
@@ -177,7 +177,7 @@ describe('Test Commands >', function () {
         var testLine = 'TRE';
         var result = markup.markupCommand(testLine, null);
         expect(result).to.exist;
-        expect(result.cmdName).to.equal('TRESTART');
+        expect(result.routineName).to.equal('TRESTART');
         done();
     });
 
@@ -185,7 +185,7 @@ describe('Test Commands >', function () {
         var testLine = 'TRO';
         var result = markup.markupCommand(testLine, null);
         expect(result).to.exist;
-        expect(result.cmdName).to.equal('TROLLBACK');
+        expect(result.routineName).to.equal('TROLLBACK');
         done();
     });
 
@@ -193,7 +193,7 @@ describe('Test Commands >', function () {
         var testLine = 'TS';
         var result = markup.markupCommand(testLine, null);
         expect(result).to.exist;
-        expect(result.cmdName).to.equal('TSTART');
+        expect(result.routineName).to.equal('TSTART');
         done();
     });
 
@@ -201,7 +201,7 @@ describe('Test Commands >', function () {
         var testLine = 'U';
         var result = markup.markupCommand(testLine, null);
         expect(result).to.exist;
-        expect(result.cmdName).to.equal('USE');
+        expect(result.routineName).to.equal('USE');
         done();
     });
 
@@ -209,7 +209,7 @@ describe('Test Commands >', function () {
         var testLine = 'V';
         var result = markup.markupCommand(testLine, null);
         expect(result).to.exist;
-        expect(result.cmdName).to.equal('VIEW');
+        expect(result.routineName).to.equal('VIEW');
         done();
     });
 
@@ -217,7 +217,7 @@ describe('Test Commands >', function () {
         var testLine = 'W';
         var result = markup.markupCommand(testLine, null);
         expect(result).to.exist;
-        expect(result.cmdName).to.equal('WRITE');
+        expect(result.routineName).to.equal('WRITE');
         done();
     });
 
@@ -225,7 +225,7 @@ describe('Test Commands >', function () {
         var testLine = 'X';
         var result = markup.markupCommand(testLine, null);
         expect(result).to.exist;
-        expect(result.cmdName).to.equal('XECUTE');
+        expect(result.routineName).to.equal('XECUTE');
         done();
     });
 
