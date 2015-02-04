@@ -59,6 +59,11 @@ module.exports = function (grunt) {
                 files: {
                     'dist/emcellent-toolkit.min.js': ['index.js']
                 }
+            },
+            options: {
+                browserifyOptions: {
+                    standalone: 'mTools'
+                }
             }
         },
         uglify: {

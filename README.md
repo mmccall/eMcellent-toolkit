@@ -14,7 +14,7 @@ To use in the browser, install dependencies with `npm install`, and run `grunt b
 
 ### Functions
 
-The library has one entry function; note that all functions are synchronous.
+The library has one entry function; note that all functions are synchronous.  In the browser, this can be accessed as an element of the mTools object (ex. `mTools.markupObject();` ).
 
 #### parseLine
 
