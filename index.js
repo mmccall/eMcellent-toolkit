@@ -1,6 +1,7 @@
 "use strict";
 
 var markup = require('./lib/markup.js');
+var html = require('./lib/html.js');
 
 function markupObject(inputObject) {
 
@@ -15,4 +16,12 @@ function markupObject(inputObject) {
     return inputObject;
 }
 
+function generateHTML(inputObject, inputSpacer, parameters) {
+
+    inputObject.lineHTML = html.generateHTML(inputObject, inputSpacer, parameters);
+    return inputObject;
+
+}
+
 module.exports.markupObject = markupObject;
+module.exports.generateHTML = generateHTML;
