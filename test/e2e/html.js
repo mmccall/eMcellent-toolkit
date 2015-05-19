@@ -6,33 +6,53 @@ var fs = require('fs');
 var path = require('path');
 var filePath = path.join(__dirname, '../sample/XINDEX.m');
 var emcellentParse = require('emcellent-parse');
+var jsdom = require('jsdom');
 var mRoutine;
+
+var fileContents;
 
 describe('Parse Entire XINDEX.m Routine >', function () {
 
     before(function (done) {
-        var fileContents = fs.readFileSync(filePath, 'utf8');
+        fileContents = fs.readFileSync(filePath, 'utf8');
         mRoutine = emcellentParse.parseRoutine(fileContents);
         done();
     });
 
     it('Ensure all lines are parsed', function (done) {
 
-
-    	var tmpHTML = "";
+        var tmpHTML = "";
 
         for (var i in mRoutine) {
-        	var result = emcellentToolkit.generateHTML(mRoutine[i], " ", {markupFlag: true, markupRoutine: true});
-        	tmpHTML = tmpHTML + result.lineHTML + '<br>';
+            var result = emcellentToolkit.generateHTML(mRoutine[i], " ", {
+                markupFlag: true,
+                markupRoutine: true
+            });
+            tmpHTML = tmpHTML + "<div>" + result.lineHTML + "</div>";
         }
 
-        var tmpText = htmlToText.fromString(tmpHTML);
+        jsdom.env(tmpHTML, ["http://code.jquery.com/jquery.js"],
+            function (errors, window) {
 
-        console.log(tmpText)
+                var testText = "";
+            	window.$("div").each(function(index) {
+                    console.log(window.$(this).html());
+                    testText = testText + window.$( this ).children().text() + "\n";
+            	});
 
+                console.log(testText);
+                //if (fileContents === testText) {
+                //    console.log('asdf');
+                //}
+                //console.log(fileContents);
+            	//var tmpVal = window.$("a").text() + "\n"; 
+                //console.log(tmpVal);
+                //console.log(window.$("body"));
+                done();
 
-        done();
+            });
+
+        //done();
     });
 
 });
-
