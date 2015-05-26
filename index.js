@@ -28,17 +28,12 @@ function generateHTML(inputObject, inputSpacer, parameters) {
 module.exports.markupObject = markupObject;
 module.exports.generateHTML = generateHTML;
 
-function throwException(value) {
-    this.value = value;
-    this.message = "is not a valid input."
-
-}
-
-//Change to single point of entry, pass in JS options.
+//Single entry point, takes either HTML or verbose flags in JSON options.
 function markup(inputString, options) {
 
     var HTMLFlag = false;
     var verboseFlag = false;
+    var results = "";
 
     //Exit if input null.
     if (_.isNull(inputString)) {
@@ -59,11 +54,15 @@ function markup(inputString, options) {
             }
             if (options.verbose) {
                 verboseFlag = true;
+            } else {
+                results = inputString;
             }
         }
+    } else {
+        results = inputString;
     }
 
-    return 'RESULTS';
+    return results;
 
 }
 
