@@ -7,7 +7,6 @@ var path = require('path');
 var filePath = path.join(__dirname, '../sample/XINDEX.m');
 var toolkit = require('../../index');
 var jsDiff = require('diff');
-var htmlStrip = require('htmlStrip-native');
 
 var fileContents;
 
@@ -18,57 +17,31 @@ describe('Parse Entire XINDEX.m Routine >', function () {
         done();
     });
 
-    it('Ensure all lines are parsed', function (done) {
+    it('Strip HTML and Diff', function (done) {
 
-        //.log(fileContents);
-        var HTMLResults = "";
-
-        var results = toolkit.markup(fileContents, {HTML: true});
-        
-        var regex = /<br\s*[\/]?>/gi;
-        var res = results.replace(regex, "\n");
-        HTMLResults = htmlStrip.html_strip(res, {});
-        console.log(HTMLResults);
-
-        jsDiff.diffLines(fileContents, HTMLResults, function (err, res) {
-
-            console.log(res);
-                    done();
-
+        var results = toolkit.markup(fileContents, {
+            HTML: true
         });
 
+        //Use Regex to strip tags.
+        var breakPattern = /<br\s*[\/]?>/gi;
+        var closePattern = /<\s*\/\s*\w\s*.*?>/g;
+        var openPattern = /<\s*\w.*?>/g;
+        results = results.replace(breakPattern, "\n");
+        results = results.replace(closePattern, "");
+        results = results.replace(openPattern, "");
 
-        fs.writeFileSync('./tmp.txt', HTMLResults, 'utf8');
+        jsDiff.diffLines(fileContents, results, function (err, res) {
 
-        /*for (var i in mRoutine) {
-            var result = emcellentToolkit.generateHTML(mRoutine[i], " ", {
-                markupFlag: true,
-                markupRoutine: true
-            });
-            tmpHTML = tmpHTML + "<div>" + result.lineHTML + "</div>";
-        }
+            for (var i in res) {
+                if (res[i].count || res[i].added || res[i].removed) {
+                    done(new Error('File diffs inconsistent, check output'));
+                }
+            }
 
-        jsdom.env(tmpHTML, ["http://code.jquery.com/jquery.js"],
-            function (errors, window) {
+            done();
 
-                var testText = "";
-            	window.$("div").each(function(index) {
-                    console.log(window.$(this).html());
-                    testText = testText + window.$( this ).children().text() + "\n";
-            	});
-
-                console.log(testText);
-                //if (fileContents === testText) {
-                //    console.log('asdf');
-                //}
-                //console.log(fileContents);
-            	//var tmpVal = window.$("a").text() + "\n"; 
-                //console.log(tmpVal);
-                //console.log(window.$("body"));
-                done();
-
-            });
-    */
+        });
 
     });
 

@@ -22,14 +22,20 @@ function renderHTML(inputObject) {
 
     var results = "";
 
-    _.each(inputObject, function(entry) {
+    _.each(inputObject, function (entry, index) {
         var tmpLine = "";
         //Rendering must be performed sequentially.
         tmpLine = html.renderLabel(entry, tmpLine);
         tmpLine = html.renderIndentation(entry, tmpLine);
         tmpLine = html.renderRoutines(entry, tmpLine);
         tmpLine = html.renderComment(entry, tmpLine);
-        results = results + tmpLine + "<br>";
+
+        if (index === (inputObject.length - 1)) {
+            results = results + tmpLine;
+        } else {
+            results = results + tmpLine + "<br>";
+        }
+
     });
 
     return results;
