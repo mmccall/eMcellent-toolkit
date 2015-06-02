@@ -12,22 +12,26 @@
 </head>
 <body>
 	<div class="container col-sm-10 col-sm-offset-1">
-		<div class="text-center">
+		<div class="text-center row">
 			<h1>eMcellent</h1>
 			<p class="lead">A most excellent tool for M/MUMPS Code.</p>
 		</div>
-		<div>
+		<div class="row col-sm-10 col-sm-offset-1">
 			<form id="mCode">
-				<div class="form-group">
+				<div class="form-group row">
 					<label for="mInput">Input Code:</label>
+
 					<textarea class="form-control" id="mInput" rows="10" placeholder="Enter M/MUMPS here ...">WELCOME W:GREETINGS "HELLO WORLD" ;Say Hello!</textarea>
-					<div class="text-center">
-						<button id="submitCode" class="btn btn-danger">Process Code</button>
+
+					<div class="text-center submit-row">
+						<button id="submitCode" class="btn btn-warning btn-lg">Process Code</button>
 					</div>
 				</div>
 			</form>
 		</div>
-		<pre id="mOutput"></pre> 
+		<div class="row col-sm-10 col-sm-offset-1">
+		<pre id="mOutput" style="display: none;"></pre> 
+		</div>
 	</div>
 	<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
@@ -36,6 +40,7 @@
 
 	<script>
 
+
 		$( "#mCode" ).submit(function ( event ) {
 			event.preventDefault();
 			var htmlOutput = "";
@@ -43,9 +48,10 @@
 			var inputCode = $( "#mInput" ).val();
 			var parseResults = mTools.markup(inputCode, {HTML: true});
 			
-			console.log(parseResults);
+			   
+        	
 
-			$(" #mOutput" ).html(parseResults);
+			$(" #mOutput" ).show().html(parseResults);
 
 			//Initialize Tooltips.
 			$(function () {
