@@ -4,7 +4,7 @@ var expect = require('chai').expect;
 var render = require('../../lib/html.js');
 
 var leadingContent = "<a class=\"mComment\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Comments\">";
-var trailingContent = "</a>"
+var trailingContent = "</a>";
 
 describe('Render Comments >', function () {
 

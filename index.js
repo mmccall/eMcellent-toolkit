@@ -5,7 +5,7 @@ var html = require('./lib/html.js');
 var m = require('emcellent');
 var _ = require('lodash');
 
-function markupObject(inputObject) {
+/*function markupObject(inputObject) {
 
     //Markup Routines.
     if (inputObject.lineRoutines) {
@@ -16,17 +16,25 @@ function markupObject(inputObject) {
     }
 
     return inputObject;
+}*/
+
+function renderHTML(inputObject) {
+
+    var results = "";
+
+    _.each(inputObject, function(entry) {
+        var tmpLine = "";
+        //Rendering must be performed sequentially.
+        tmpLine = html.renderLabel(entry, tmpLine);
+        tmpLine = html.renderIndentation(entry, tmpLine);
+        tmpLine = html.renderRoutines(entry, tmpLine);
+        tmpLine = html.renderComment(entry, tmpLine);
+        results = results + tmpLine + "<br>";
+    });
+
+    return results;
+
 }
-
-function generateHTML(inputObject, inputSpacer, parameters) {
-
-    inputObject.lineHTML = html.generateHTML(inputObject, inputSpacer, parameters);
-    return inputObject;
-
-}
-
-module.exports.markupObject = markupObject;
-module.exports.generateHTML = generateHTML;
 
 //Single entry point, takes either HTML or verbose flags in JSON options.
 function markup(inputString, options) {
@@ -49,13 +57,15 @@ function markup(inputString, options) {
         if (!_.isPlainObject(options)) {
             throw new Error("options must be an object");
         } else {
+
+            var parsedObject = m.parse(inputString);
+
             if (options.HTML) {
                 HTMLFlag = true;
+                results = renderHTML(parsedObject);
             }
             if (options.verbose) {
                 verboseFlag = true;
-            } else {
-                results = inputString;
             }
         }
     } else {

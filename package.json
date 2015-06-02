@@ -19,14 +19,15 @@
     },
     "homepage": "https://github.com/mmccall/eMcellent-toolkit",
     "dependencies": {
-        "lodash": "~3.8.x"
+        "lodash": "~3.8.x",
+        "emcellent": "~0.0.3"
     },
     "devDependencies": {
         "mocha": "~2.0.1",
         "chai": "~1.10.0",
         "grunt": "~0.4.5",
-        "jsdom": "~3.1.0",
-        "emcellent": "~0.0.3",
+        "htmlstrip-native": "~0.1.1",
+        "diff": "~1.3.2",
         "grunt-contrib-jshint": "~0.10.0",
         "grunt-contrib-watch": "~0.6.1",
         "grunt-jsbeautifier": "~0.2.8",

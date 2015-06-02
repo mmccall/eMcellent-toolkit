@@ -1,0 +1,23 @@
+.mLabel {
+	color: blue;
+}
+
+.mComment {
+	color: grey;
+}
+
+.mRoutine {
+	color: red;
+}
+
+.mIndentation {
+	color: black;
+}
+
+.mArguments {
+	color: orange;
+}
+
+.mPostConditional {
+	color: purple;
+}

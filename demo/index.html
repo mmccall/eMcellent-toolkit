@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="eMcellent, a most excellent M/MUMPS parsing project.">
+	<meta name="author" content="Matthew McCall">
+	<title>eMcellent - A most excellent M/MUMPS parsing library.</title>
+	<link rel="shortcut icon" href="favicon.ico">
+	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+	<link href="stylesheets/mStyle.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container col-sm-10 col-sm-offset-1">
+		<div class="text-center">
+			<h1>eMcellent</h1>
+			<p class="lead">A most excellent tool for M/MUMPS Code.</p>
+		</div>
+		<div>
+			<form id="mCode">
+				<div class="form-group">
+					<label for="mInput">Input Code:</label>
+					<textarea class="form-control" id="mInput" rows="10" placeholder="Enter M/MUMPS here ...">WELCOME W:GREETINGS "HELLO WORLD" ;Say Hello!</textarea>
+					<div class="text-center">
+						<button id="submitCode" class="btn btn-danger">Process Code</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<pre id="mOutput"></pre> 
+	</div>
+	<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<!--<script src="javascripts/emcellent-parse.min.js"></script>-->
+	<script src="javascripts/emcellent-toolkit.min.js"></script>
+
+	<script>
+
+		$( "#mCode" ).submit(function ( event ) {
+			event.preventDefault();
+			var htmlOutput = "";
+			//var outputSpacer = " ";
+			var inputCode = $( "#mInput" ).val();
+			var parseResults = mTools.markup(inputCode, {HTML: true});
+			
+			console.log(parseResults);
+
+			$(" #mOutput" ).html(parseResults);
+
+			//Initialize Tooltips.
+			$(function () {
+				$('[data-toggle="tooltip"]').tooltip()
+			});
+
+		});
+	</script>
+</body>
+</html>
