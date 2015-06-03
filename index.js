@@ -2,26 +2,23 @@
 
 //var markup = require('./lib/markup.js');
 var html = require('./lib/html.js');
+var codeMarkup = require('./lib/markup.js');
 var m = require('emcellent');
 var _ = require('lodash');
 
-/*function markupObject(inputObject) {
+function markupObject(inputObject) {
 
-    //Markup Routines.
-    if (inputObject.lineRoutines) {
-        for (var i in inputObject.lineRoutines) {
-            var rtnMarkup = markup.markupCommand(inputObject.lineRoutines[i].mRoutine);
-            inputObject.lineRoutines[i].mRoutineMarkup = rtnMarkup;
-        }
-    }
+    var results = _.map(inputObject, function (entry) {
+        var newEntry = codeMarkup.markupCommand(entry);
+        return newEntry;
+    });
 
-    return inputObject;
-}*/
+    return results;
+}
 
 function renderHTML(inputObject) {
 
     var results = "";
-
     _.each(inputObject, function (entry, index) {
         var tmpLine = "";
         //Rendering must be performed sequentially.
@@ -39,7 +36,6 @@ function renderHTML(inputObject) {
     });
 
     return results;
-
 }
 
 //Single entry point, takes either HTML or verbose flags in JSON options.
@@ -66,12 +62,16 @@ function markup(inputString, options) {
 
             var parsedObject = m.parse(inputString);
 
-            if (options.HTML) {
-                HTMLFlag = true;
-                results = renderHTML(parsedObject);
-            }
+            //input flagging.
             if (options.verbose) {
-                verboseFlag = true;
+                parsedObject = markupObject(parsedObject);
+            }
+
+            //output formatting.
+            if (options.HTML) {
+                results = renderHTML(parsedObject);
+            } else {
+                results = m.render(parsedObject);
             }
         }
     } else {

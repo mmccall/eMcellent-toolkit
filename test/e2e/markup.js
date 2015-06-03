@@ -6,8 +6,8 @@ var fs = require('fs');
 var path = require('path');
 var filePath = path.join(__dirname, '../sample/XINDEX.m');
 var toolkit = require('../../index.js');
+var jsDiff = require('diff');
 
-var mRoutine;
 var fileContents;
 
 describe('Basic Entry Routine Testing >', function () {
@@ -63,6 +63,129 @@ describe('Routine Parser Testing >', function () {
         var results = toolkit.markup(fileContents);
         expect(results).to.equal(fileContents);
         done();
+    });
+
+});
+
+describe('Verbose Flag Testing >', function () {
+
+    before(function (done) {
+        fileContents = fs.readFileSync(filePath, 'utf8');
+        done();
+    });
+
+    it('Negative Test', function (done) {
+        var results = toolkit.markup(fileContents, {
+            verbose: false
+        });
+        expect(results).to.equal(fileContents);
+        done();
+    });
+
+    it('Expected Variance', function (done) {
+        var results = toolkit.markup(fileContents, {
+            verbose: true
+        });
+        //Should be a diff, since markup has changed.
+        jsDiff.diffLines(fileContents, results, function (err, res) {
+            for (var i in res) {
+                if (!res[i].count && (!res[i].added || !res[i].removed)) {
+                    done(new Error('Every line should have a diff.'));
+                }
+            }
+            done();
+        });
+    });
+});
+
+describe('HTML Output Testing >', function () {
+
+    before(function (done) {
+        fileContents = fs.readFileSync(filePath, 'utf8');
+        done();
+    });
+
+    it('Negative Test', function (done) {
+        var results = toolkit.markup(fileContents, {
+            HTML: false
+        });
+        expect(results).to.equal(fileContents);
+        done();
+    });
+
+    it('Strip HTML and Diff', function (done) {
+
+        var results = toolkit.markup(fileContents, {
+            HTML: true
+        });
+
+        //Use Regex to strip tags.
+        var breakPattern = /<br\s*[\/]?>/gi;
+        var closePattern = /<\s*\/\s*\w\s*.*?>/g;
+        var openPattern = /<\s*\w.*?>/g;
+        results = results.replace(breakPattern, "\n");
+        results = results.replace(closePattern, "");
+        results = results.replace(openPattern, "");
+
+        jsDiff.diffLines(fileContents, results, function (err, res) {
+
+            for (var i in res) {
+                if (res[i].count || res[i].added || res[i].removed) {
+                    done(new Error('File diffs inconsistent, check output'));
+                }
+            }
+
+            done();
+
+        });
+
+    });
+
+});
+
+describe('HTML/Markup Output Testing >', function () {
+
+    before(function (done) {
+        fileContents = fs.readFileSync(filePath, 'utf8');
+        done();
+    });
+
+    it('Negative Test', function (done) {
+        var results = toolkit.markup(fileContents, {
+            HTML: false,
+            verbose: false
+        });
+        expect(results).to.equal(fileContents);
+        done();
+    });
+
+    it('HTML/Markup Diff', function (done) {
+
+        var results = toolkit.markup(fileContents, {
+            HTML: true,
+            verbose: true
+        });
+
+        //Use Regex to strip tags.
+        var breakPattern = /<br\s*[\/]?>/gi;
+        var closePattern = /<\s*\/\s*\w\s*.*?>/g;
+        var openPattern = /<\s*\w.*?>/g;
+        results = results.replace(breakPattern, "\n");
+        results = results.replace(closePattern, "");
+        results = results.replace(openPattern, "");
+
+        jsDiff.diffLines(fileContents, results, function (err, res) {
+
+            for (var i in res) {
+                if (!res[i].count && (!res[i].added || !res[i].removed)) {
+                    done(new Error('Every line should have a diff.'));
+                }
+            }
+
+            done();
+
+        });
+
     });
 
 });
