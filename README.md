@@ -2,11 +2,11 @@
 
 [![Build Status](https://travis-ci.org/mmccall/eMcellent-toolkit.svg?branch=master)](https://travis-ci.org/mmccall/eMcellent-toolkit) [![Coverage Status](https://coveralls.io/repos/mmccall/eMcellent-toolkit/badge.svg)](https://coveralls.io/r/mmccall/eMcellent-toolkit)
 
-A most excellent toolkit for use with eMcellent-parse M/MUMPS parsing library; eMcellent-toolkit takes JSON representations of M/MUMPS code and performs manipulation and/or markup of the data.
+A most excellent toolkit for use with eMcellent M/MUMPS parsing library; eMcellent-toolkit builds on the library to provide HTML rendering and syntatic markup services.
 
 ### Getting Started
 
-The code is built to be run in either Node.js or the browser; it uses native Javascript parsing and has no intrinsic dependencies outside of those used during builds.
+The code is built to be run in either Node.js or the browser.
 
 To use in Node.js, the package is available via `npm`.  To use locally, you will only need to install dependencies using `npm install`.  To test, the default `grunt` task will execute all test cases.
 
@@ -14,38 +14,26 @@ To use in the browser, install dependencies with `npm install`, and run `grunt b
 
 ### Functions
 
-The library has one entry function; note that all functions are synchronous.  In the browser, this can be accessed as an element of the mTools object (ex. `mTools.markupObject();` ).
+The library has one entry function.  In the browser, this can be accessed as an element of the mTools object (ex. `mTools.markup();` ).
 
-#### parseLine
+#### markup()
 
-`markupObject(inputObject)`
+`markup(inputMUMPS, options)`
 
 Takes a M/MUMPS object, and decorates it with information about the routines it contains
 
-`inputObject` - A M/MUMPS object returned from the eMcellent-parse library.
+`inputMUMPS` - A line or lines of MUMPS code.
 
-### Return Format
+`options` - optional parsing parameters for the library.
 
-The object will be returned in the format below:
++ `HTML` - Returns the input as HTML for browser display.
++ `verbose` - Expands all routine names, and adds more detail to HTML output.
 
-```
-{
-	lineLabel: String,
-	lineNumber: Number,
-	lineComment: String,
-	lineIndentation: Number,
-    lineRoutines: [{
-        mRoutine: String,
-        mRoutineMarkup: {
-            routineName: String,
-            routineSyntax: String,
-            routineDesc: String
-        },
-        mArguments: String,
-        mPostConditional: String,
-    }]
-}
-```
+
+### Demo
+
+A demo single page application is available here.
+
 ### Contributions
 
 Pull requests are welcome, just be sure to include test cases.

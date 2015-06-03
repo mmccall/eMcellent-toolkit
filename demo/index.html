@@ -60,10 +60,16 @@
 			   
 			$(" #mOutput" ).show().html(parseResults);
 
+			//Initialize Popovers.
+			$(function () {
+  				$('[data-toggle="popover"]').popover()
+			})
+
 			//Initialize Tooltips.
 			$(function () {
 				$('[data-toggle="tooltip"]').tooltip()
 			});
+
 
 		});
 	</script>
