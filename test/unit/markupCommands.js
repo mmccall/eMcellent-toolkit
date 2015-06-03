@@ -5,6 +5,12 @@ var markup = require('../../lib/markup.js');
 
 describe('Test Commands >', function () {
 
+    it('No Object Test', function (done) {
+        var result = markup.markupCommand(null);
+        expect(result).to.equal(null);
+        done();
+    });
+
     it('Trim Spacing Test', function (done) {
         var testLine = ' B ';
         var tmpObject = {};
