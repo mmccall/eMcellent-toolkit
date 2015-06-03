@@ -25,6 +25,11 @@
 
 					<div class="text-center submit-row">
 						<button id="submitCode" class="btn btn-warning btn-lg">Process Code</button>
+						<div class="checkbox">
+						    <label>
+						      <input type="checkbox" id="detersificate" checked> Detersificate
+						    </label>
+						</div>
 					</div>
 				</div>
 			</form>
@@ -35,7 +40,6 @@
 	</div>
 	<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-	<!--<script src="javascripts/emcellent-parse.min.js"></script>-->
 	<script src="javascripts/emcellent-toolkit.min.js"></script>
 
 	<script>
@@ -43,14 +47,17 @@
 
 		$( "#mCode" ).submit(function ( event ) {
 			event.preventDefault();
-			var htmlOutput = "";
-			//var outputSpacer = " ";
-			var inputCode = $( "#mInput" ).val();
-			var parseResults = mTools.markup(inputCode, {HTML: true});
 			
-			   
-        	
+			var inputCode = $( "#mInput" ).val();
 
+			var dFlag = $( "#detersificate").is(':checked');
+			
+			if (dFlag) {
+				var parseResults = mTools.markup(inputCode, {HTML: true, verbose: true});	
+			} else {
+				var parseResults = mTools.markup(inputCode, {HTML: true});	
+			}
+			   
 			$(" #mOutput" ).show().html(parseResults);
 
 			//Initialize Tooltips.
