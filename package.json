@@ -1,5 +1,5 @@
 {
-    "name": "eMcellent-toolkit",
+    "name": "emcellent-toolkit",
     "version": "0.0.1",
     "description": "A toolkit for performing neat functions with M/MUMPS data.",
     "main": "index.js",
