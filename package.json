@@ -19,8 +19,8 @@
     },
     "homepage": "https://github.com/mmccall/eMcellent-toolkit",
     "dependencies": {
-        "lodash": "~3.8.x",
-        "emcellent": "~0.0.3"
+        "lodash": "^3.9.x",
+        "emcellent": "^0.0.x"
     },
     "devDependencies": {
         "mocha": "~2.0.1",

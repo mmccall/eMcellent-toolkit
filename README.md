@@ -32,7 +32,7 @@ Takes a M/MUMPS object, and decorates it with information about the routines it 
 
 ### Demo
 
-A demo single page application is available here.
+A demo single page application is available [here](http://mmccall.github.io/eMcellent-toolkit/).
 
 ### Contributions
 
